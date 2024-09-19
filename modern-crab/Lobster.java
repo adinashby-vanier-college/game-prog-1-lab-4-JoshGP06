@@ -23,6 +23,11 @@ public class Lobster extends Actor
     public void act()
     {
         moveAround();
+        eat();
+        
+        if (isGameLost()) {
+            transitionToGameLostWorld();
+        }
     }
 
     /**
@@ -37,5 +42,58 @@ public class Lobster extends Actor
         if (isAtEdge()) {
             turn(180);
         }
+    }
+
+    /**
+     * 
+     */
+    public void eat()
+    {
+        Actor crab = getOneIntersectingObject(Crab.class);
+        Actor worm = getOneIntersectingObject(Worm.class);
+        if (crab != null) {
+            World world = getWorld();
+            world.removeObject(crab);
+            Greenfoot.playSound("dead.wav");
+        }
+        if (worm != null) {
+            World world = getWorld();
+            int xLocation = worm.getX();
+            int yLocation = worm.getY();
+            Lobster lobster =  new  Lobster();
+            world.removeObject(worm);
+            world.addObject(lobster, xLocation, yLocation);
+            Greenfoot.playSound("dead.wav");
+        }
+    }
+
+    /**
+     * 
+     */
+    public boolean isGameLost()
+    {
+        World world = getWorld();
+        if (world.getObjects(Crab.class).isEmpty()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * 
+     */
+    public void transitionToGameLostWorld()
+    {
+        World gameLostWorld =  new  GameLostWorld();
+        Greenfoot.setWorld(gameLostWorld);
+    }
+
+    /**
+     * 
+     */
+    public void Multiply()
+    {
     }
 }
