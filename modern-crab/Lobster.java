@@ -60,7 +60,7 @@ public class Lobster extends Actor
             World world = getWorld();
             int xLocation = worm.getX();
             int yLocation = worm.getY();
-            Lobster lobster =  new  Lobster();
+            Lobster lobster =  new Lobster();
             world.removeObject(worm);
             world.addObject(lobster, xLocation, yLocation);
             Greenfoot.playSound("dead.wav");
@@ -86,7 +86,7 @@ public class Lobster extends Actor
      */
     public void transitionToGameLostWorld()
     {
-        World gameLostWorld =  new  GameLostWorld();
+        World gameLostWorld =  new GameLostWorld();
         Greenfoot.setWorld(gameLostWorld);
     }
 

@@ -24,7 +24,7 @@ public class GameLostWorld extends World
     final public void showTextWithBigGreenFont(String message, int x, int y)
     {
         GreenfootImage bg = getBackground();
-        Font font =  new  Font(50);
+        Font font =  new Font(50);
         bg.setFont(font);
         bg.setColor(Color.GREEN);
         bg.drawString(message, x, y);
